@@ -1,5 +1,5 @@
 version: v1.0
-name: Initial Pipeline
+name: Only run on `production` branch
 agent:
   machine:
     type: f1-standard-2
@@ -10,11 +10,4 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - checkout
             - echo $SEMAPHORE_GIT_BRANCH
-promotions:
-  - name: 'Deploy to target: `production` '
-    pipeline_file: pipeline_2.yml
-    deployment_target: production
-    auto_promote:
-      when: result = 'passed'
