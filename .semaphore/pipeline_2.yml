@@ -2,15 +2,15 @@ version: v1.0
 name: Only run on `production` branch
 agent:
   machine:
-    type: f1-standard-2
-    os_image: ubuntu2204
+    type: e2-standard-2
+    os_image: ubuntu2404
 blocks:
   - name: 'Block #1'
     task:
       jobs:
         - name: 'Job #1'
           commands:
-            - echo $SEMAPHORE_GIT_BRANCH
+            - echo "success"
             - checkout
             - git fetch --unshallow
             - 'git config remote.origin.fetch ''+refs/heads/*:refs/remotes/origin/*'''
