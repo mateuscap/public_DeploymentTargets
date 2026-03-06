@@ -10,8 +10,15 @@ blocks:
       jobs:
         - name: 'Job #1'
           commands:
-            - checkout
             - echo $SEMAPHORE_GIT_BRANCH
+            - echo "success"
+            - checkout
+            - '#git fetch --unshallow'
+            - 'git config remote.origin.fetch ''+refs/heads/*:refs/remotes/origin/*'''
+            - git fetch --all
+            - git branch -a
+            - git checkout production
+            - git pull
 promotions:
   - name: 'Deploy to target: `production` '
     pipeline_file: pipeline_2.yml
